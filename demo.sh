@@ -46,7 +46,6 @@ function run_container() {
     docker run \
         -d \
         -u postgres \
-        --rm \
         --name $CONTAINER_NAME \
         --network $NETWORK_NAME \
         -e POSTGRES_PASSWORD=root \
@@ -61,7 +60,7 @@ function connect() {
 
 function stop() {
     echo "=== Stop demo ===";
-    docker stop $CONTAINER_NAME
+    docker rm --force $CONTAINER_NAME
     docker volume rm $VOLUME_NAME
 }
 
